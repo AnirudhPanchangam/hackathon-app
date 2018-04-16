@@ -1,0 +1,54 @@
+{% extends "core/header.html" %}
+{% block content %}
+<script>
+  var _validFileExtensions = [".mp4", ".mov", ".avi", ".m4v", ".mkv"];    
+function Validate(oForm) {
+    var arrInputs = oForm.getElementsByTagName("input");
+    for (var i = 0; i < arrInputs.length; i++) {
+        var oInput = arrInputs[i];
+        if (oInput.type == "file") {
+            var sFileName = oInput.value;
+            if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                        blnValid = true;
+                        break;
+                    }
+                }
+                
+                if (!blnValid) {
+                    alert("Sorry, " + sFileName + " is invalid, allowed extensions are: " + _validFileExtensions.join(", "));
+                    return false;
+                }
+            }
+        }
+    }
+  
+    return true;
+}
+
+
+</script>
+<form method="post" enctype="multipart/form-data" action="" onsubmit="return Validate(this);">
+    {% csrf_token %}
+    <div class="form-data">
+    {{ form.file }}
+</div>
+<div class="form-data">
+	<label >File Name</label>
+    {{ form.vid_name }}
+</div>
+<div class="form-data">
+	<label>Select Course</label>
+    {{ form.course }}
+    <button type="submit">Upload</button>
+  
+</div>
+  </form>
+
+
+  <button><a href="/">Return to home</a></button>
+
+{% endblock %}

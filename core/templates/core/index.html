@@ -1,0 +1,157 @@
+{% extends "core/header.html" %}
+{% block content %}
+<style type="text/css">@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } </style>
+<style type="text/css">
+.glyphicon {
+    font-size: 25px;
+}
+</style>
+<style><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;
+  }
+  .bg-2 { 
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;
+  }
+  .bg-3 { 
+      background-color: #ffffff; /* White */
+      color: #555555;
+  }
+  .bg-4 { 
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;
+  }
+  .container-fluid {
+      padding-top: 70px;
+      padding-bottom: 70px;
+  }
+</style>
+<div class="container-fluid bg-1 text-center">
+  <h3 class="margin">User Profile</h3>
+  {% load static %}
+  <img src="{% static "polls/samurai.jpg" %}" class="img-responsive img-circle margin" style="display:inline" alt="samurai" width="150" height="100"><br>
+   <label style="font-size: 20px;font-family: Times New Roman">{{ request.user.first_name }}
+            {{ request.user.last_name}}</label>
+</div>
+        <div class="container-fluid bg-2 text-center">
+  <aside class="info ">
+            {% if user.is_authenticated %}
+            <div class="phone">
+            <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+            <label style="font-size: 20px">Phone Number:</label>
+            <p>{% for objs in obj %}
+             <label style="font-size: 20px;font-family: Times New Roman">{{ objs.phone }}</label>
+            {% endfor %}
+            {% endif %}</p><br><br>
+            </div>
+            <div class="email">
+            {% if user.is_authenticated %}
+            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+            <label style="font-size: 20px">Email:</label>
+            <p>
+             <label style="font-size: 20px;font-family: Times New Roman">{{ request.user.email}}</label>
+            
+            {% endif %}</p><br>
+            </div>
+        </div>
+        <div class="container-fluid bg-3 text-center">    
+            <p class="info">
+            {% if user.is_authenticated %}
+            <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+            <label style="font-size: 20px">Courses Taken :</label>
+            {% for objs in obj %}
+             <label style="font-size: 20px;font-family: Times New Roman">{{ objs.course }}</label>
+            {% endfor %}
+            {% endif %}
+            <div class="row">
+             <div class="col-sm-4">
+             <p>Agriculture</p>
+            <img src="birds1.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+            </div>
+            <div class="col-sm-4"> 
+            <p>Horticulture</p>
+             <img src="birds2.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+            </div>
+            <div class="col-sm-4"> 
+             <p>Hydroponics</p>
+             <img src="birds3.jpg" class="img-responsive margin" style="width:100%" alt="Image">
+            </div>
+            </div>
+                </p>            
+            <footer class="container-fluid bg-4 text-center">
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    <label style="font-size: 20px">Rating</label>
+                    <a href="https://www.w3schools.com"></a> 
+                    <p align="center">
+                    <fieldset class="rating">
+    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+</fieldset>
+                </p>      
+            </div>
+</footer> 
+{% endblock %}

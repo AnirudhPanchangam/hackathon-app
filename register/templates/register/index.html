@@ -1,0 +1,78 @@
+{% extends "core/header.html" %}
+{% block content %}
+<h1 class="display-4" align='center'>Register</h1><br>
+<div class="container-fluid">
+  <form class="form-inline" onsubmit="return checkForm(this);" method='POST'><br>
+    {% csrf_token %}
+    <label for="first name">First Name </label>
+    <input type="text" class="form-control" name="fname" placeholder="First Name">
+    <label for="last name">Last Name </label>
+    <input type="text" class="form-control" name="lname" placeholder="Last Name">
+    <br><br>
+    <label for="last name">Phone Nuber </label>
+    <input type="text" class="form-control" name="phone" placeholder="Phone Number">
+    <br><br>
+    <label for="Email">Email address</label>
+    <input type="email" class="form-control" name="email" placeholder="Email">
+    <br><br>
+    <label for="Email">Select User Group</label>
+    {{ form.user_group }}
+    <br><br>
+    <label for="Password">Password </label>
+    <input type="password" class="form-control" name="pwd1" placeholder="Password">
+    <br><br>
+    <label for="Password">Confirm Password </label>
+    <input type="password" class="form-control" name="pwd2" placeholder="Password">
+    <br>
+    <button type="submit" class="btn btn-default">Register</button>
+  </form>
+  {{ error }}
+</div>  
+<script type="text/javascript">
+
+  function checkForm(form)
+  {
+    
+    if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
+      if(form.pwd1.value.length < 6) {
+        alert("Error: Password must contain at least six characters!");
+        form.pwd1.focus();
+        return false;
+      }
+      if(form.pwd1.value == form.username.value) {
+        alert("Error: Password must be different from Username!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[0-9]/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: password must contain at least one number (0-9)!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[a-z]/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: password must contain at least one lowercase letter (a-z)!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[A-Z]/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: password must contain at least one uppercase letter (A-Z)!");
+        form.pwd1.focus();
+        return false;
+      }
+    } else {
+      alert("Error: Please check that you've entered and confirmed your password!");
+      form.pwd1.focus();
+      return false;
+    }
+
+    alert("You entered a valid password: " + form.pwd1.value);
+    return true;
+  }
+
+</script>
+
+
+{% endblock %}

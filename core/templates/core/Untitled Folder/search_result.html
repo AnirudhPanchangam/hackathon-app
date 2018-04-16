@@ -1,0 +1,9 @@
+{% extends "core/header.html" %}
+{% block content %}
+{{ query_string }}
+<br>
+{% for result in found_entries  %}
+{{ result }}
+{% endfor %}
+
+{%  endblock %}

@@ -1,0 +1,13 @@
+{% extends "core/header.html" %}
+{% block content %}
+<div class="container">
+        <div class="list-group">
+        	<h2 align="center">Select a Video</h2>
+    {% for obj in vd %}
+    
+    <a href="/view/view/{{ obj.id }}" class = "list-group-item">{{ obj.video_name }}</a>
+    {% endfor %}
+    </div>
+    </div>
+
+{% endblock %}

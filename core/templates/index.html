@@ -1,0 +1,18 @@
+
+{% extends "core/header.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.groups.all.0.name == "student" %}
+{% include "core/student.html" %}  
+{% elif user.groups.all.0.name == "teacher" %}
+{% include "core/teach.html" %}
+{% endif %}
+{% else %}
+{% include "core/some.html" %}
+{% endif %}
+{% endblock %}
+
+
+
+
+

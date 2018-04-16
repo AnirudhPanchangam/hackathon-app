@@ -1,0 +1,9 @@
+{% extends "core/header.html" %}
+{% block content %}
+{% for obj in vd %}
+<div class = "container">
+<p class="bg-success" color:"white"><a href="/view/{{ obj.pk }}">{{ obj.course }}&nbsp;{{ obj.teacher }}</a></p>
+</div>
+{% endfor %}
+
+{% endblock %}

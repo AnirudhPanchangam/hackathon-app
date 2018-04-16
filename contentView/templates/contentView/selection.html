@@ -1,0 +1,12 @@
+{% extends 'core/header.html' %}
+{% block content %}
+<div class="container">
+    <div class="list-group">
+    	<h2 align = "center">Select a category</h2>
+{% for sel in selection %}
+
+<a href="/view/{{ sel }}" class = "list-group-item">{{ sel }}</a>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

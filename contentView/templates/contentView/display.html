@@ -1,0 +1,15 @@
+{% extends "core/header.html" %}
+{% block content %}
+<style type="text/css">
+video {
+    width: 100%;
+    height: auto;
+}
+</style>
+{% for obj in vd %}
+<video name='demo' controls  width='50%' height='40%'>
+    <source src="{{obj.document.url}}" type="video/mp4"></source>
+</video>
+{% endfor %}
+
+{% endblock %}

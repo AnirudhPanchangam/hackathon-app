@@ -1,0 +1,35 @@
+{% extends "core/header.html" %}
+{% block content %}
+<div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+{{ test_data }}
+</div>
+</div>
+</div>
+<form action="/search/">
+<input type="text" name="q" placeholder="Search" >
+<input type="submit" name="Search" value="Search">
+</form>
+{% if user.is_authenticated %}
+<h1>Phone Number</h1>  {% for objs in obj %}{{ objs.phone }}
+<br>
+{{ objs.subject }}
+{{ objs.course }}
+
+{% endfor %}
+{% ifequal user.groups.all.0.name "teacher" %}
+  This is teacher
+{% endifequal %}
+{% ifequal user.groups.all.0.name "student" %}
+  This is student
+{% endifequal %}
+{% include "core/some.html" %}
+{{ request.user }}
+{% endif %}
+{% endblock %}
+
+
+
+
+

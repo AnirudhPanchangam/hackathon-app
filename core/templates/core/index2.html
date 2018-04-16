@@ -1,0 +1,108 @@
+{% extends "core/header.html" %}
+{% block content %}
+<header>
+    <div class="container">
+        <div class="name ">
+            <label>NAME:</label>
+            {{ request.user.first_name }}
+            {{ request.user.last_name}}
+        </div>    
+    </header>
+    <div class="container">
+        <aside class="info ">
+            <div class="phone">
+            <label>Phone Number:</label>
+            {{ std.phone }}
+                <p class="padd-top">
+                    <i class="fa fa-birthday-cake"></i>
+                    2-2-2222
+                </p>
+
+                <p>
+                    <i class="fa fa-phone"></i>
+                    0123456789
+                </p>            
+
+                <p>
+                    <i  class="fa fa-envelope"></i>
+                    qwerty@gmail.com
+                </p>                
+
+                <p>
+                    <i class="fa fa-home"></i>
+                    123 lorem ipsum, 
+                </p>                
+
+            </div> 
+
+            <div class="box">
+
+                <p class="title" >
+                    <i  class="fa fa-asterisk"></i>
+                    Skill
+                </p>
+
+                <p class="padd-top">HTML, CSS</p>
+                <div class="skill">
+
+                    <div class="skill-right r1"></div>
+                </div>
+
+                <p>JavaScript/jQuery</p>
+                <div class="skill">
+
+                    <div class="skill-right r2"></div>
+                </div>
+
+                <p>PHP, SQL</p>
+                <div class="skill">
+
+                    <div class="skill-right r3"></div>
+                </div>
+            </div>  
+
+        </aside>
+
+
+        <section class="main">
+            <div class="box">
+                <p class="title">
+                    <i class="fa fa-graduation-cap"></i>
+                    Education
+                </p>
+                <p class="padd-top">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, maxime obcaecati enim illo dolorem, recusandae eum! Quasi natus quaerat aspernatur hic, maxime necessitatibus, quo voluptatem veritatis excepturi error sit vero deleniti laborum alias, expedita nostrum. Mollitia doloribus voluptates explicabo quidem.
+                </p>
+            </div>  
+
+
+            <div class="box">
+                <p class="title">
+                    <i class="fa fa-flag"></i>
+                    activity
+                </p>
+                <br>
+                <p class="padd-top">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur rem, perspiciatis aliquam amet asperiores earum vero hic ab, minus veritatis. 
+                </p>
+            </div>  
+
+
+
+            <div>
+                <div class="box">
+                <p class="title">
+                    <i class="fa fa-crosshairs" aria-hidden="true"></i>
+                Career goals
+                </p>
+                <br>
+                <p class="padd-top">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur rem, perspiciatis aliquam amet asperiores earum vero hic ab, minus veritatis. <br>
+                </p>
+            </div>  
+            </div>
+
+        </section>
+
+    </div>
+    <footer>    </footer>
+{% endblock %}
